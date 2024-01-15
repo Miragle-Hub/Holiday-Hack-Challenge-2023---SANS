@@ -213,3 +213,53 @@ elf@fc2a0ee85df8:/opt/troll_den$ kill 14636
 ````
 ${\color{pink}Congratulations, you caught all the trolls and retrieved all the presents!
 Type "exit" to close...}$
+
+## Christmas Island: Rudolph's Resort
+### Reportinator
+Difficulty: 🎄🎄
+
+Noel Boetie used ChatNPT to write a pentest report. Go to Christmas Island and help him clean it up.
+Reportinator
+
+We are presented with a report to check if the vulnerabilities reported are true or false.
+It is good to read through the report and get your answers but there is also an alternate way to do this challenege easily.
+
+### Technique
+There is a POST request with payload data for the 9 questions asked where 1 indicates false and 0 indicates true. With the help of Burpsuite we will first intercept the request and then pass it over to Intruder which would help with all the probable combinations for the correct answer.
+
+#### Steps
+1. Load the reportinator webpage and click on submit review directly. You will observe a POST request sent to https://hhc23-reportinator-dot-holidayhack2023.ue.r.appspot.com/check as below
+
+   <img width="359" alt="image" src="https://github.com/Miragle-Hub/Holiday-Hack-Challenge-2023---SANS/assets/128744976/9b70534a-2edc-4f71-af70-a0d7e33613fa">
+
+2. Add payload marker to the value of the parameter input as below. Choose Clusterbomb attack [Check all permutation of payload combination] now fill all the 9 payload set with our combination of 0 and 1.
+
+   <img width="506" alt="image" src="https://github.com/Miragle-Hub/Holiday-Hack-Challenge-2023---SANS/assets/128744976/022888ba-fe19-4c1c-b5bd-8cab0e0021fb">
+
+3. Lauch the attack and observe one response will have 200 response status code.
+
+   <img width="547" alt="image" src="https://github.com/Miragle-Hub/Holiday-Hack-Challenge-2023---SANS/assets/128744976/3f5e3ac8-7754-4867-afea-b4734deda8eb">
+
+4. Now work the combination on the report and get the task completed.
+
+Noel Boetie says "Great job on completing that challenge! Ever thought about how your newfound skills might come into play later on? Keep that mind sharp, and remember, today's victories are tomorrow's strategies!"
+
+It truly does help you later 🤯
+
+## Christmas Island: Rresort Lobby
+> [!TIP]
+> Remember: Pepper Minstix "After you complete all the challenges, come back here for a surprise!"
+
+### Azure 101
+
+
+
+
+
+
+
+
+
+
+
+
