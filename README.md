@@ -171,5 +171,45 @@ We need to make sure trolls don't come back. Add the characters "TROLL_REPELLENT
 _________________________________________________________________________________________________
 [elf@5338c71bd631:~/workshop/electrical$ nano fuse2
 ````
+````
+Find the troll somewhere in /opt/troll_den.
+_________________________________________________________________________________________________
+elf@fc2a0ee85df8:/opt/troll_den$ find /opt/troll_den/ -iname '*troll*'
+````
+````
+Find the file somewhere in /opt/troll_den that is owned by the user troll.
+_________________________________________________________________________________________________
+elf@fc2a0ee85df8:/opt/troll_den$ find /opt/troll_den -type f -user troll
+````
+````
+Find the file created by trolls that is greater than 108 kilobytes and less than 110 kilobytes located somewhere in /opt/troll_den.
+_________________________________________________________________________________________________
+find /opt/troll_den  -size +108k -size -110k
+````
+````
+List the process running
+_________________________________________________________________________________________________
+elf@fc2a0ee85df8:/opt/troll_den$ ps aux
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+init           1  0.0  0.0  20112 16296 pts/0    Ss+  05:39   0:00 /usr/bin/python3 /usr/local/bin/tmuxp load ./mysession.yaml
+elf        14636  0.1  0.1  31520 26736 pts/2    S+   06:04   0:00 /usr/bin/python3 /14516_troll
+elf        15593  0.0  0.0   7672  3236 pts/3    R+   06:05   0:00 ps aux
+````
 
-
+````
+The 14516_troll process is listening on a TCP port. Use a command to have the only listening port display to the screen.
+_________________________________________________________________________________________________
+elf@fc2a0ee85df8:/opt/troll_den$ netstat -tuln
+````
+````
+The service listening on port 54321 is an HTTP server. Interact with this server to retrieve the last troll.
+_________________________________________________________________________________________________
+elf@fc2a0ee85df8:/opt/troll_den$ curl 0.0.0.0:54321
+````
+````
+Your final task is to stop the 14516_troll process to collect the remaining presents.
+_________________________________________________________________________________________________
+elf@fc2a0ee85df8:/opt/troll_den$ kill 14636
+````
+${\color{pink}Congratulations, you caught all the trolls and retrieved all the presents!
+Type "exit" to close...}$
