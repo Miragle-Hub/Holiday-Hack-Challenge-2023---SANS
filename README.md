@@ -74,10 +74,102 @@ url.searchParams.set('singlePlayer', 'true');
 window.location.href = url.href;
 ````
  
+## Christmas Island: Frosty's beach
 
+### Linux 101
+Difficulty: 🎄🎄
+Visit Ginger Breddie in Santa's Shack on Christmas Island to help him with some basic Linux tasks. It's in the southwest corner of Frosty's Beach.
 
-
-
-
+````
+Perform a directory listing of your home directory to find a troll and retrieve a present!
+_________________________________________________________________________________________________
+elf@5338c71bd631:~$ ls
+HELP  troll_19315479765589239  workshop
+````
+````
+Now find the troll inside the troll.
+_________________________________________________________________________________________________
+elf@5338c71bd631:~$ cat troll_19315479765589239 
+troll_24187022596776786
+````
+````
+Great, now remove the troll in your home directory.
+_________________________________________________________________________________________________
+elf@5338c71bd631:~$ rm troll_19315479765589239
+````
+````
+Print the present working directory using a command.
+_________________________________________________________________________________________________
+elf@5338c71bd631:~$ pwd
+/home/elf
+````
+````
+Good job but it looks like another troll hid itself in your home directory. Find the hidden troll!
+_________________________________________________________________________________________________
+elf@5338c71bd631:~$ls -a
+.  ..  .bash_history  .bash_logout  .bashrc  .profile  .troll_5074624024543078  HELP  workshop
+````
+````
+Now find troll in your command history
+_________________________________________________________________________________________________
+elf@5338c71bd631:~$ history
+````
+````
+Find the troll in your environment variables.
+_________________________________________________________________________________________________
+elf@5338c71bd631:~$ env
+````
+````
+Next, head into the workshop.
+_________________________________________________________________________________________________
+elf@5338c71bd631:~$ cd workshop/
+````
+````
+A troll is hiding in one of the workshop toolboxes. Use "grep" while ignoring case to find which toolbox the troll is in.
+_________________________________________________________________________________________________
+elf@5338c71bd631:~/workshop$ grep -i "troll" ~/workshop/*
+grep: /home/elf/workshop/electrical: Is a directory
+/home/elf/workshop/toolbox_191.txt:tRoLl.4056180441832623
+````
+````
+A troll is blocking the present_engine from starting. Run the present_engine binary to retrieve this troll.
+_________________________________________________________________________________________________
+elf@5338c71bd631:~/workshop$ ls -l  | grep *present*
+-r--r--r-- 1 elf elf 4990336 Dec  2 22:19 present_engine
+elf@5338c71bd631:~/workshop$ chmod +x present_engine 
+elf@5338c71bd631:~/workshop$ ls -l  | grep *present*
+-r-xr-xr-x 1 elf elf 4990336 Dec  2 22:19 present_engine
+elf@5338c71bd631:~/workshop$ ./present_engine 
+troll.898906189498077
+````
+````
+Trolls have blown the fuses in /home/elf/workshop/electrical. cd into electrical and rename blown_fuse0 to fuse0.
+_________________________________________________________________________________________________
+elf@5338c71bd631:~/workshop$ cd electrical
+elf@5338c71bd631:~/workshop/electrical$ ls
+blown_fuse0
+elf@5338c71bd631:~/workshop/electrical$ mv blown_fuse0 fuse0
+elf@5338c71bd631:~/workshop/electrical$ ls
+fuse0
+````
+````
+Now, make a symbolic link (symlink) named fuse1 that points to fuse0
+_________________________________________________________________________________________________
+elf@5338c71bd631:~/workshop/electrical$ ln -s fuse0 fuse1
+elf@5338c71bd631:~/workshop/electrical$ ls
+fuse0  fuse1
+````
+````
+Make a copy of fuse1 named fuse2.
+_________________________________________________________________________________________________
+elf@5338c71bd631:~/workshop/electrical$ cp fuse1 fuse2
+elf@5338c71bd631:~/workshop/electrical$ ls
+fuse0  fuse1  fuse2
+````
+````
+We need to make sure trolls don't come back. Add the characters "TROLL_REPELLENT" into the file fuse2.
+_________________________________________________________________________________________________
+[elf@5338c71bd631:~/workshop/electrical$ nano fuse2
+````
 
 
