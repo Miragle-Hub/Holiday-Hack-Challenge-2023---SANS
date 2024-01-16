@@ -27,6 +27,7 @@ Difficulty: 🎄🎄
 Visit Christmas Island and talk to Morcel Nougat about this great new game. Team up with another player and show Morcel how to win against Santa!
 
 <details>
+<summary>Solution</summary>
 To win the game we have to defeat elves and the Santa but boy is it difficult. As the hint says we need a powerful player to team with us and defeat elves and santa, that would be the Dwarf. Hint is in the Javascript source code of the game as highlighted below.
 
 ### Code Analysis:
@@ -85,6 +86,7 @@ Difficulty: 🎄🎄
 Visit Ginger Breddie in Santa's Shack on Christmas Island to help him with some basic Linux tasks. It's in the southwest corner of Frosty's Beach.
 
 <details>
+<summary>Solution</summary>
 ````
 Perform a directory listing of your home directory to find a troll and retrieve a present!
 _________________________________________________________________________________________________
@@ -226,6 +228,7 @@ Type "exit" to close...}$
 Difficulty: 🎄🎄
 
 <details>
+<summary>Solution</summary>
 Noel Boetie used ChatNPT to write a pentest report. Go to Christmas Island and help him clean it up.
 Reportinator
 
@@ -275,7 +278,7 @@ Help Sparkle Redberry with some Azure command line skills. Find the elf and the 
 > The Azure CLI tools come with a builtin help system, but Microsoft also provides this handy [cheatsheet](https://learn.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest.
 
 <details>
- <summary>Solution</summary>
+<summary>Solution</summary>
 
 ````
  You may not know this but the Azure cli help messages are very easy to access. First, try typing:
@@ -495,6 +498,7 @@ Piney Sappington needs a lesson in JSON web tokens. Hack Elf Hunt and score 75 p
 > Unlock the mysteries of JWTs with insights from PortSwigger's JWT Guide.
 
 <details>
+<summary>Solution</summary>
 
 
 
