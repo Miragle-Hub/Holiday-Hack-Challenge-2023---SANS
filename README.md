@@ -8,10 +8,12 @@ Difficulty: 🎄
 
 Talk to Jingle Ringford on Christmas Island and get your bearings at Geese Islands
 
+<details>
 <img width="477" alt="image" src="https://github.com/Miragle-Hub/Holiday-Hack-Challenge-2023---SANS/assets/128744976/f446a59b-8aec-4e4f-9a3d-7220f1fc2821">
 
 ### Items Gathered
 ![image](https://github.com/Miragle-Hub/Holiday-Hack-Challenge-2023---SANS/assets/128744976/4147c58c-cb62-4135-80d1-ece769d27c12) <b> Fishing Pole - Just a humble rod and reel. Perfect for catching all manner of aquatic life. </b>
+</details>
 
 ## Christmas Island: Frosty's beach
 
@@ -24,6 +26,7 @@ Difficulty: 🎄🎄
 
 Visit Christmas Island and talk to Morcel Nougat about this great new game. Team up with another player and show Morcel how to win against Santa!
 
+<details>
 To win the game we have to defeat elves and the Santa but boy is it difficult. As the hint says we need a powerful player to team with us and defeat elves and santa, that would be the Dwarf. Hint is in the Javascript source code of the game as highlighted below.
 
 ### Code Analysis:
@@ -73,13 +76,15 @@ url.searchParams.set('singlePlayer', 'true');
 // Reload the frame with the modified URL
 window.location.href = url.href;
 ````
- 
+</details>
+
 ## Christmas Island: Frosty's beach
 
 ### Linux 101
 Difficulty: 🎄🎄
 Visit Ginger Breddie in Santa's Shack on Christmas Island to help him with some basic Linux tasks. It's in the southwest corner of Frosty's Beach.
 
+<details>
 ````
 Perform a directory listing of your home directory to find a troll and retrieve a present!
 _________________________________________________________________________________________________
@@ -214,15 +219,18 @@ elf@fc2a0ee85df8:/opt/troll_den$ kill 14636
 ${\color{pink}Congratulations, you caught all the trolls and retrieved all the presents!
 Type "exit" to close...}$
 
+</details>
+
 ## Christmas Island: Rudolph's Resort
 ### Reportinator
 Difficulty: 🎄🎄
 
+<details>
 Noel Boetie used ChatNPT to write a pentest report. Go to Christmas Island and help him clean it up.
 Reportinator
 
 We are presented with a report to check if the vulnerabilities reported are true or false.
-It is good to read through the report and get your answers but there is also an alternate way to do this challenege easily.
+It is good to read through the report and get your answers but there is also an alternative way to do this challenege.
 
 ### Technique
 There is a POST request with payload data for the 9 questions asked where 1 indicates false and 0 indicates true. With the help of Burpsuite we will first intercept the request and then pass it over to Intruder which would help with all the probable combinations for the correct answer.
@@ -242,6 +250,8 @@ There is a POST request with payload data for the 9 questions asked where 1 indi
 
 4. Now work the combination on the report and get the task completed.
 
+</details>
+
 Noel Boetie says "Great job on completing that challenge! Ever thought about how your newfound skills might come into play later on? Keep that mind sharp, and remember, today's victories are tomorrow's strategies!"
 
 It truly does help you later 🤯
@@ -251,6 +261,254 @@ It truly does help you later 🤯
 > Remember: Pepper Minstix "After you complete all the challenges, come back here for a surprise!"
 
 ### Azure 101
+Difficulty: 🎄🎄
+
+Help Sparkle Redberry with some Azure command line skills. Find the elf and the terminal on Christmas Island.
+
+> [!TIP]
+> Azure CLI Reference
+> 
+> From: Sparkle Redberry
+> 
+> Terminal: Azure 101
+> 
+> The Azure CLI tools come with a builtin help system, but Microsoft also provides this handy [cheatsheet](https://learn.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest.
+
+<details>
+ <summary>Solution</summary>
+
+````
+ You may not know this but the Azure cli help messages are very easy to access. First, try typing:
+$ az help | less
+````
+````
+Next, you've already been configured with credentials. Use 'az' and your 'account' to 'show' your current details and make sure to pipe to less ( | less )
+_________________________________________________________________________________________________
+elf@8db4fd157ccd:~$ az account -h list
+The client 'f17559a4-d8a2-4661-ba0f-c04f8cf2926d' with object id '8deacb33-214d-4d94-9ab4-d27768410f17' does not have authorization to perform action 'Microsoft.Compute/virtualMachines/read' over scope '/subscriptions/2b0942f3-9bca-484b-a508-abdae2db5e64' or the scope is invalid. If access was recently granted, please refresh your credentials.
+````
+````
+_________________________________________________________________________________________________
+elf@8db4fd157ccd:~$ az account alias show
+````
+````
+_________________________________________________________________________________________________
+elf@8db4fd157ccd:~$ az group list
+[
+  {
+    "id": "/subscriptions/2b0942f3-9bca-484b-a508-abdae2db5e64/resourceGroups/northpole-rg1",
+    "location": "eastus",
+    "managedBy": null,
+    "name": "northpole-rg1",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": {}
+  },
+  {
+    "id": "/subscriptions/2b0942f3-9bca-484b-a508-abdae2db5e64/resourceGroups/northpole-rg2",
+    "location": "westus",
+    "managedBy": null,
+    "name": "northpole-rg2",
+    "properties": {
+      "provisioningState": "Succeeded"
+    },
+    "tags": {}
+  }
+]
+````
+````
+Ok, now use one of the resource groups to get a list of function apps. For more information:
+https://learn.microsoft.com/en-us/cli/azure/functionapp?view=azure-cli-latest
+Note: Some of the information returned from this command relates to other cloud assets used by Santa and his elves.
+_________________________________________________________________________________________________
+elf@8db4fd157ccd:~$ az functionapp list  -g northpole-rg1 | less
+
+[
+  {
+    "appServicePlanId": "/subscriptions/2b0942f3-9bca-484b-a508-abdae2db5e64/resourceGroups/nor
+thpole-rg1/providers/Microsoft.Web/serverfarms/EastUSLinuxDynamicPlan",
+    "availabilityState": "Normal",
+    "clientAffinityEnabled": false,
+    "clientCertEnabled": false,
+    "clientCertExclusionPaths": null,
+    "clientCertMode": "Required",
+    "cloningInfo": null,
+    "containerSize": 0,
+    "customDomainVerificationId": "201F74B099FA881DB9368A26C8E8B8BB8B9AF75BF450AF717502AC151F59
+DBEA",
+    "dailyMemoryTimeQuota": 0,
+   ** "defaultHostName": "northpole-ssh-certs-fa.azurewebsites.net",**
+    "enabled": true,
+    "enabledHostNames": [
+     ** "northpole-ssh-certs-fa.azurewebsites.net"**
+    ],
+    "extendedLocation": null,
+    "hostNameSslStates": [
+      {......................................
+        }
+    ],
+    "hostNames": [
+     ** "northpole-ssh-certs-fa.azurewebsites.net"**
+    ],
+    "hostNamesDisabled": false,
+    "hostingEnvironmentProfile": null,
+    "httpsOnly": false,
+    "hyperV": false,
+    **"id": "/subscriptions/2b0942f3-9bca-484b-a508-abdae2db5e64/resourceGroups/northpole-rg1/pro
+viders/Microsoft.Web/sites/northpole-ssh-certs-fa",**
+    "identity": {
+      "principalId": "d3be48a8-0702-407c-89af-0319780a2aea",
+      "tenantId": "90a38eda-4006-4dd5-924c-6ca55cacc14d",
+      "type": "SystemAssigned",
+      "userAssignedIdentities": null
+    },
+    "inProgressOperationId": null,
+    "isDefaultContainer": null,
+    "isXenon": false,
+    "keyVaultReferenceIdentity": "SystemAssigned",
+    "kind": "functionapp,linux",
+    "lastModifiedTimeUtc": "2023-11-09T14:43:01.183333",
+    "location": "East US",
+    "maxNumberOfWorkers": null,
+    "name": "northpole-ssh-certs-fa",
+    "outboundIpAddresses": "",
+    "possibleOutboundIpAddresses": "",
+    "publicNetworkAccess": null,
+    "redundancyMode": "None",
+   ** "repositorySiteName": "northpole-ssh-certs-fa",**
+    "reserved": true,
+    "resourceGroup": "northpole-rg1",
+    "scmSiteAlsoStopped": false,
+    "siteConfig": {
+      "acrUseManagedIdentityCreds": false,
+      "acrUserManagedIdentityId": null,
+      "alwaysOn": false,
+      "antivirusScanEnabled": null,
+      "apiDefinition": null,
+      "apiManagementConfig": null,
+      "appCommandLine": null,
+      "appSettings": null,
+      .
+      .
+      .
+      .
+      .
+      .
+      },
+    "slotSwapStatus": null,
+    "state": "Running",
+    "storageAccountRequired": false,
+    "suspendedTill": null,
+    "tags": {
+      **"create-cert-func-url-path": "/api/create-cert?code=candy-cane-twirl",**
+      "project": "northpole-ssh-certs"
+    },
+    "targetSwapSlot": null,
+    "trafficManagerHostNames": null,
+    "type": "Microsoft.Web/sites",
+    "usageState": "Normal",
+    "virtualNetworkSubnetId": null,
+    "vnetContentShareEnabled": false,
+    "vnetImagePullEnabled": false,
+    "vnetRouteAllEnabled": false
+  }
+]
+````
+````
+Find a way to list the only VM in one of the resource groups you have access to.
+For more information:
+https://learn.microsoft.com/en-us/cli/azure/vm?view=azure-cli-latest
+_________________________________________________________________________________________________
+elf@8db4fd157ccd:~$ az vm list -g northpole-rg2 | less
+
+[
+  {
+    "id": "/subscriptions/2b0942f3-9bca-484b-a508-abdae2db5e64/resourceGroups/northpole-rg2/providers/Microsoft.Compute/virtualMachines/NP-VM1",
+    "location": "eastus",
+    "name": "NP-VM1",
+    "properties": {
+      "hardwareProfile": {
+        "vmSize": "Standard_D2s_v3"
+      },
+      "provisioningState": "Succeeded",
+      "storageProfile": {
+        "imageReference": {
+          "offer": "UbuntuServer",
+          "publisher": "Canonical",
+          "sku": "16.04-LTS",
+          "version": "latest"
+        },
+        "osDisk": {
+          "caching": "ReadWrite",
+          "createOption": "FromImage",
+          "managedDisk": {
+            "storageAccountType": "Standard_LRS"
+          },
+          "name": "VM1_OsDisk_1"
+        }
+      },
+      "vmId": "e5f16214-18be-4a31-9ebb-2be3a55cfcf7"
+    },
+    "resourceGroup": "northpole-rg2",
+````
+````
+Find a way to invoke a run-command against the only Virtual Machine (VM) so you can RunShellScript and get a directory listing to reveal a file on the Azure VM.
+For more information:
+https://learn.microsoft.com/en-us/cli/azure/vm/run-command?view=azure-cli-latest#az-vm-run-command-invoke
+_________________________________________________________________________________________________
+elf@8db4fd157ccd:~$ az vm run-command invoke -g northpole-rg2 -n NP-VM1 --command-id RunShellScript --scripts 'ls'
+{
+  "value": [
+    {
+      "code": "ComponentStatus/StdOut/succeeded",
+      "displayStatus": "Provisioning succeeded",
+      "level": "Info",
+      "message": "bin\netc\nhome\njinglebells\nlib\nlib64\nusr\n",
+      "time": 1705438837
+    },
+    {
+      "code": "ComponentStatus/StdErr/succeeded",
+      "displayStatus": "Provisioning succeeded",
+      "level": "Info",
+      "message": "",
+      "time": 1705438837
+    }
+  ]
+}
+````
+${\color{green}Great,/you/did/it/all!}$
+</details>
+
+### Elf Hunt
+Difficulty: 🎄🎄🎄
+
+Piney Sappington needs a lesson in JSON web tokens. Hack Elf Hunt and score 75 points.
+
+> [!TIP]
+> JWT Secrets Revealed
+> 
+> From: Piney Sappington
+> 
+> Terminal: Elf Hunt
+> 
+> Unlock the mysteries of JWTs with insights from PortSwigger's JWT Guide.
+
+<details>
+
+
+
+</details>
+
+### Certificate SSHenanigans
+Difficulty: 🎄🎄🎄🎄🎄
+
+Go to Pixel Island and review Alabaster Snowball's new SSH certificate configuration and Azure [Function App](https://northpole-ssh-certs-fa.azurewebsites.net/api/create-cert?code=candy-cane-twirl) . What type of cookie cache is Alabaster planning to implement?
+
+
+    
+
+  
 
 
 
