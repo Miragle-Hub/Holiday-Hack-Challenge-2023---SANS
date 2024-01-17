@@ -483,7 +483,7 @@ elf@8db4fd157ccd:~$ az vm run-command invoke -g northpole-rg2 -n NP-VM1 --comman
   ]
 }
 ````
-${\color{green}Great,/you/did/it/all!}$
+${\color{green}Great,you did it all!}$
 </details>
 
 ## Christmas Island: Resort Lobby
@@ -559,12 +559,14 @@ The tasks gives an idea on how to use SSH certificate to authenticate to a remot
 
 Alabaster introduces his gleaming Azure server at ssh-server-vm.santaworkshopgeeseislands.org. Inspired by ChatNPT's ingenious suggestion to upgrade using SSH certificates, Alabaster is eager to share the magic. 
 
-${\color{green}"Generate/a/certificate/,/"/he/suggests/,/"use/the/monitor/account/to/access/the/host/ , and let me know if my TODO list is within reach."}$
+${\color{green}"Generate a certificate," he suggests, "use the monitor account to access the host, and let me know if my TODO list is within reach."}$
 
 
  
 1. Let's create a SSH certificate from the machine which would use to access the server.
-   <img width="960" alt="image" src="https://github.com/Miragle-Hub/Holiday-Hack-Challenge-2023---SANS/assets/128744976/f80f03b8-6b23-4e35-b9c2-4f475a44d512">
+   
+   <img width="441" alt="image" src="https://github.com/Miragle-Hub/Holiday-Hack-Challenge-2023---SANS/assets/128744976/f4ed0c57-b6c0-498a-9f84-c87a1812dead">
+
 
 2. Now copy the public key contents and paste it in https://northpole-ssh-certs-fa.azurewebsites.net/api/create-cert?code=candy-cane-twirl. The certificate will be signed and response would have the signed pub key.
 
@@ -575,16 +577,111 @@ ${\color{green}"Generate/a/certificate/,/"/he/suggests/,/"use/the/monitor/accoun
 
 <img width="950" alt="image" src="https://github.com/Miragle-Hub/Holiday-Hack-Challenge-2023---SANS/assets/128744976/0698166a-fa23-4564-9de6-593bdb47262a">
 
-4.   
+4. Now SSH to the remote server with the signed Public Key and private key using the monitor account.
+
+````
+   ┌──(kali㉿kali)-[~/SSHenanigans]
+└─$ ssh -i moni monitor@ssh-server-vm.santaworkshopgeeseislands.org 
+monitor@ssh-server-vm:~$ whoami
+monitor
+````
+5. The below hint shows that we have to gather information using the Azure Web/Function App deployed in the server hence let's start with that.
+
+> [!TIP]
+> Azure Function App Source Code
+> From: Alabaster Snowball
+> Objective: Certificate SSHenanigans
+> The [get-source-control](https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/get-source-control?view=rest-appservice-2022-03-01) Azure REST API endpoint provides details about where an Azure Web App or Function App is deployed from.
+
+6. One  of our previous Task "Azure 101" we found a function app so that could be a good start. 
+
+elf@8db4fd157ccd:~$ az functionapp list  -g northpole-rg1 | less
+
+[
+  {
+    "appServicePlanId": "/subscriptions/2b0942f3-9bca-484b-a508-abdae2db5e64/resourceGroups/nor
+thpole-rg1/providers/Microsoft.Web/serverfarms/EastUSLinuxDynamicPlan",
+    "availabilityState": "Normal",
+    "clientAffinityEnabled": false,
+    "clientCertEnabled": false,
+    "clientCertExclusionPaths": null,
+    "clientCertMode": "Required",
+    "cloningInfo": null,
+    "containerSize": 0,
+    "customDomainVerificationId": "201F74B099FA881DB9368A26C8E8B8BB8B9AF75BF450AF717502AC151F59
+DBEA",
+    "dailyMemoryTimeQuota": 0,
+   **"defaultHostName": "northpole-ssh-certs-fa.azurewebsites.net",**
+    "enabled": true,
+    "enabledHostNames": [
+     **"northpole-ssh-certs-fa.azurewebsites.net"**
+    ],
+    "extendedLocation": null,
+    "hostNameSslStates": [
+      {......................................
+        }
+    ],
+    "hostNames": [
+     **"northpole-ssh-certs-fa.azurewebsites.net"**
+    ],
+    "hostNamesDisabled": false,
+    "hostingEnvironmentProfile": null,
+    "httpsOnly": false,
+    "hyperV": false,
+    **"id": "/subscriptions/2b0942f3-9bca-484b-a508-abdae2db5e64/resourceGroups/northpole-rg1/pro
+viders/Microsoft.Web/sites/northpole-ssh-certs-fa",**
+    "identity": {
+      "principalId": "d3be48a8-0702-407c-89af-0319780a2aea",
+      "tenantId": "90a38eda-4006-4dd5-924c-6ca55cacc14d",
+      "type": "SystemAssigned",
+      "userAssignedIdentities": null
+    },
 
 
 
 
-    
+7. Since AZI CLI is not in the host we use CURL and it retured me an error that the authorization header is missing.
+  The header should look like: "Authorization: Bearer <your-access-token>"
 
-  
+````    
+monitor@ssh-server-vm:/home$ curl -X GET "https://management.azure.com/subscriptions/2b0942f3-9bca-484b-a508-abdae2db5e64/resourceGroups/northpole-rg1/providers/Microsoft.Web/sites/northpole-ssh-certs-fa/sourcecontrols/web?api-version=2022-03-01" | jq
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   115  100   115    0     0    603      0 --:--:-- --:--:-- --:--:--   602
+{
+  "error": {
+    "code": "AuthenticationFailed",
+    "message": "Authentication failed. The 'Authorization' header is missing."
+  }
+}
+````
 
+Reference: 
+https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/how-to-use-vm-token#get-a-token-using-curl
 
+````
+monitor@ssh-server-vm:/home$ curl 'http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=https%3A%2F%2Fmanagement.azure.com%2F' -H Metadata:true -s | jq
+{
+  "access_token": "eyJ0eXAiOiJKV1Q******************cig",
+  "client_id": "b84e06d3-aba1-4bcc-9626-2e0d76cba2ce",
+  "expires_in": "84827",
+  "expires_on": "1705609969",
+  "ext_expires_in": "86399",
+  "not_before": "1705523269",
+  "resource": "https://management.azure.com/",
+  "token_type": "Bearer"
+}
+````
+8. For ease the token has been assigned to a variable az_token and the curl request was sent again, we see a github repo url over there.
+
+# Replace <your-access-token> with your actual Azure AD access token
+
+````
+monitor@ssh-server-vm:/home$ curl -X GET "https://management.azure.com/subscriptions/2b0942f3-9bca-484b-a508-abdae2db5e64/resourceGroups/northpole-rg1/providers/Microsoft.Web/sites/northpole-ssh-certs-fa/sourcecontrols/web?api-version=2022-03-01" \
+-H "Authorization: Bearer $az_token" | jq
+ ````
+
+GET https://graph.microsoft.com/v1.0/servicePrincipals?$filter=displayName eq '<your-app-name>'
 
 
 
