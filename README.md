@@ -555,9 +555,17 @@ A practical introduction to secure shell certificates and how to upgrade your ex
 <details>
 <summary>Solution</summary>
 
-The video gives an idea on how to use SSH certificate to authenticate to a remote server. 
+The video gives an idea on how to use SSH certificate to authenticate to a remote server and ADCS Attack.
+
+ During the conversation with Alabaster Snowball he said "Generate yourself a certificate and use the monitor account to access the host. See if you can grab my TODO list."
  
 1. Let's create a SSH certificate from the machine which would use to access the server.
+   <img width="960" alt="image" src="https://github.com/Miragle-Hub/Holiday-Hack-Challenge-2023---SANS/assets/128744976/f80f03b8-6b23-4e35-b9c2-4f475a44d512">
+
+2. Now copy the public key contents and paste it in https://northpole-ssh-certs-fa.azurewebsites.net/api/create-cert?code=candy-cane-twirl. The certificate will be signed and it would
+
+<img width="686" alt="image" src="https://github.com/Miragle-Hub/Holiday-Hack-Challenge-2023---SANS/assets/128744976/f7083f70-1ba4-491a-8715-e0074c73e287">
+
 
 
 
