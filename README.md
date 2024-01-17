@@ -259,10 +259,6 @@ Noel Boetie says "Great job on completing that challenge! Ever thought about how
 
 It truly does help you later 🤯
 
-## Christmas Island: Rresort Lobby
-> [!TIP]
-> Remember: Pepper Minstix "After you complete all the challenges, come back here for a surprise!"
-
 ### Azure 101
 Difficulty: 🎄🎄
 
@@ -483,6 +479,12 @@ elf@8db4fd157ccd:~$ az vm run-command invoke -g northpole-rg2 -n NP-VM1 --comman
 ${\color{green}Great,/you/did/it/all!}$
 </details>
 
+## Christmas Island: Resort Lobby
+> [!TIP]
+> Remember: Pepper Minstix "After you complete all the challenges, come back here for a surprise!"
+
+## Pixel Island: 
+
 ### Elf Hunt
 Difficulty: 🎄🎄🎄
 
@@ -499,6 +501,37 @@ Piney Sappington needs a lesson in JSON web tokens. Hack Elf Hunt and score 75 p
 
 <details>
 <summary>Solution</summary>
+
+This task introduces us to JWT token, how to decode/modify and work with modified token. Similar to previous tasks such as snowball fight the solution has to be worked on the same tab. There is a shortcut and an intended way to do this task. let's discuss both.
+
+
+
+## Intended Way
+1. Lauch developer console and naviagate to Apllication tab which reveals a cookie for doamin https://elfhunt.org named "ElfHunt_JWT" 
+2. Copy the JWT Cookie and navigate to https://token.dev/ when decoded reveals "speed: -500". modify the speddy to -50 and copy the modified JWT token.
+
+### Before Modifying
+<img width="668" alt="image" src="https://github.com/Miragle-Hub/Holiday-Hack-Challenge-2023---SANS/assets/128744976/f218cdac-14bb-4726-8635-978aa3adf9f3">
+
+### After modifying
+<img width="656" alt="image" src="https://github.com/Miragle-Hub/Holiday-Hack-Challenge-2023---SANS/assets/128744976/c71f2210-c789-46e8-b80b-60e9b6c103b4">
+
+3. Go to developer console --> Application --> Cookies --> https://elfhunt.org.
+4. Right click edit value and paste the new token.
+5. Since all of this have to be done within the same tab. After modifying the token Go to developer console --> select elfhung.org and then type window.location.reload(); which will reload the iframe where hte game is loaded.
+
+<img width="501" alt="image" src="https://github.com/Miragle-Hub/Holiday-Hack-Challenge-2023---SANS/assets/128744976/e210d1c5-e58d-4223-949e-685145377944">
+
+6. Now observe the elves are moving very slow which makes it easy to shoot and score above 75.
+7. Upon wining the challenge we get below note which belongs to Alabaster Snowball 
+   
+   <img width="339" alt="image" src="https://github.com/Miragle-Hub/Holiday-Hack-Challenge-2023---SANS/assets/128744976/81cf67de-301f-4db7-b3ee-d308474ab458">
+
+## Alternative Way
+
+On the source code of the elf challenge we can see that there is a variable called score. If the score is 75 or higher, it updates the sessionJWT and stores it in a cookie. It pauses the game scene. So let's set the score as 80 and we win the game.
+
+<img width="834" alt="image" src="https://github.com/Miragle-Hub/Holiday-Hack-Challenge-2023---SANS/assets/128744976/3537280c-5134-4f16-b28c-049f4121b315">
 
 
 
