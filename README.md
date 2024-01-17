@@ -85,8 +85,11 @@ window.location.href = url.href;
 Difficulty: 🎄🎄
 Visit Ginger Breddie in Santa's Shack on Christmas Island to help him with some basic Linux tasks. It's in the southwest corner of Frosty's Beach.
 
+A good warm up to brush our Linux Basic's 
+
 <details>
 <summary>Solution</summary>
+ 
 ````
 Perform a directory listing of your home directory to find a troll and retrieve a present!
 _________________________________________________________________________________________________
@@ -227,6 +230,8 @@ Type "exit" to close...}$
 ### Reportinator
 Difficulty: 🎄🎄
 
+How well do you know your pentest reports?
+
 <details>
 <summary>Solution</summary>
 Noel Boetie used ChatNPT to write a pentest report. Go to Christmas Island and help him clean it up.
@@ -272,6 +277,8 @@ Help Sparkle Redberry with some Azure command line skills. Find the elf and the 
 > Terminal: Azure 101
 > 
 > The Azure CLI tools come with a builtin help system, but Microsoft also provides this handy [cheatsheet](https://learn.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest.
+
+A good warm up to brush Azure CLI basics
 
 <details>
 <summary>Solution</summary>
@@ -505,7 +512,6 @@ Piney Sappington needs a lesson in JSON web tokens. Hack Elf Hunt and score 75 p
 This task introduces us to JWT token, how to decode/modify and work with modified token. Similar to previous tasks such as snowball fight the solution has to be worked on the same tab. There is a shortcut and an intended way to do this task. let's discuss both.
 
 
-
 ## Intended Way
 1. Lauch developer console and naviagate to Apllication tab which reveals a cookie for doamin https://elfhunt.org named "ElfHunt_JWT" 
 2. Copy the JWT Cookie and navigate to https://token.dev/ when decoded reveals "speed: -500". modify the speddy to -50 and copy the modified JWT token.
@@ -523,7 +529,7 @@ This task introduces us to JWT token, how to decode/modify and work with modifie
 <img width="501" alt="image" src="https://github.com/Miragle-Hub/Holiday-Hack-Challenge-2023---SANS/assets/128744976/e210d1c5-e58d-4223-949e-685145377944">
 
 6. Now observe the elves are moving very slow which makes it easy to shoot and score above 75.
-7. Upon wining the challenge we get below note which belongs to Alabaster Snowball 
+7. Upon wining the challenge we get a note which belongs to Alabaster Snowball 
    
    <img width="339" alt="image" src="https://github.com/Miragle-Hub/Holiday-Hack-Challenge-2023---SANS/assets/128744976/81cf67de-301f-4db7-b3ee-d308474ab458">
 
@@ -534,13 +540,25 @@ On the source code of the elf challenge we can see that there is a variable call
 <img width="834" alt="image" src="https://github.com/Miragle-Hub/Holiday-Hack-Challenge-2023---SANS/assets/128744976/3537280c-5134-4f16-b28c-049f4121b315">
 
 
-
 </details>
 
 ### Certificate SSHenanigans
 Difficulty: 🎄🎄🎄🎄🎄
 
 Go to Pixel Island and review Alabaster Snowball's new SSH certificate configuration and Azure [Function App](https://northpole-ssh-certs-fa.azurewebsites.net/api/create-cert?code=candy-cane-twirl) . What type of cookie cache is Alabaster planning to implement?
+
+Certifiably Secure & Slightly Shell-arious. A Whimsical Intro to Secure Shell Certificates
+Speaker(s): Thomas Bouve
+A practical introduction to secure shell certificates and how to upgrade your existing SSH server configuration.
+[Click here to watch this talk!](https://www.youtube.com/watch?v=4S0Rniyidt4)
+
+<details>
+<summary>Solution</summary>
+
+The video gives an idea on how to use SSH certificate to authenticate to a remote server. 
+ 
+1. Let's create a SSH certificate from the machine which would use to access the server.
+
 
 
     
