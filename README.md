@@ -743,7 +743,63 @@ alabaster@ssh-server-vm:~$ cat alabaster_todo.md
 As per the TODO List Alabster is planning to implement ${\color{green}Gingerbread}$  cookie cache 🍪 
 </details>
 
+### Active Directory
+Difficult: 🎄🎄🎄🎄🎄
 
+Go to Steampunk Island and help Ribb Bonbowford audit the Azure AD environment. What's the name of the secret file in the inaccessible folder on the FileShare?
 
+> [!TIP]
+> Misconfiguration ADventures
+> From: Alabaster Snowball
+> Objective: Active Directory
+> Certificates are everywhere. Did you know Active Directory (AD) uses certificates as well? Apparently the service used to manage them can have misconfigurations too.
 
+<details>
+ <summary>Solution</summary>
 
+Ribb Bonbowford (Coggoggle Marina)
+Hello, I'm Ribb Bonbowford. Nice to meet you!
+
+I'm worried because our Active Directory server is hosted there and Wombley Cube's research department uses one of its fileshares to store their sensitive files.
+
+I'd love for you to help with auditing our Azure and Active Directory configuration and ensure there's no way to access the research department's data.
+
+Since you have access to Alabaster's SSH account that means you're already in the Azure environment. Knowing Alabaster, there might even be some useful tools in place already.
+
+Ribb Bonbowford expressed his concerns about the AD and hinted we are already in the AD environment. Let's use the information obtained from previous tasks and work for this challenge.
+
+Upon listing the files in Alabaster home directory we see the impacket tool suite is present. Let's use the smbclient package to access the SMB share using credentials obtained in Azure Key vault. 
+
+````
+alabaster@ssh-server-vm:~/impacket$ smbclient.py elfy@10.0.0.53
+Impacket v0.11.0 - Copyright 2023 Fortra
+Password:
+````
+```
+# shares
+ADMIN$
+C$
+D$
+FileShare
+IPC$
+NETLOGON
+SYSVOL
+# use FIleShare
+# ls
+drw-rw-rw-          0  Thu Jan 18 01:12:55 2024 .
+drw-rw-rw-          0  Thu Jan 18 01:12:52 2024 ..
+-rw-rw-rw-     701028  Thu Jan 18 01:12:54 2024 Cookies.pdf
+-rw-rw-rw-    1521650  Thu Jan 18 01:12:55 2024 Cookies_Recipe.pdf
+-rw-rw-rw-      54096  Thu Jan 18 01:12:55 2024 SignatureCookies.pdf
+drw-rw-rw-          0  Thu Jan 18 01:12:54 2024 super_secret_research
+-rw-rw-rw-        165  Thu Jan 18 01:12:55 2024 todo.txt
+# get todo.txt
+# exit
+alabaster@ssh-server-vm:~/impacket$ cat todo.txt 
+1. Bake some cookies.
+2. Restrict access to C:\FileShare\super_secret_research to only researchers so everyone cant see the folder or read its contents
+3. Profit
+````
+ Next task would be to get access to **C:\FileShare\super_secret_research** 
+ 
+</details>
