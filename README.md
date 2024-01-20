@@ -28,7 +28,16 @@ Visit Christmas Island and talk to Morcel Nougat about this great new game. Team
 
 <details>
 <summary>Solution</summary>
-To win the game we have to defeat elves and the Santa but boy is it difficult. As the hint says we need a powerful player to team with us and defeat elves and santa, that would be the Dwarf. Hint is in the Javascript source code of the game as highlighted below.
+Elves and Santa got you down? Unlock a secret weapon hidden in the game's code: a dwarf named Jared (yes, really) ready to bring the pain!
+
+Here's the cheat code:
+
+Hack the mainframe: Open your dev tools console and flip the 'singlePlayer' switch to 'true'. Think of it as inviting a bearded buddy to your party.
+Cue the epic entrance: Prepare for a glorious fanfare as Jared makes his debut, complete with a custom sound effect and toast notification.
+Unleash the dwarf power: With Jared on your team, even Santa's belly will jiggle with fear. Those elves won't know what hit them!
+Remember: Keep it in the same browser window – no need to open new tabs for this hack.
+
+Get ready to rumble, because this dwarf is about to bring the blizzard!
 
 ### Code Analysis:
 The code appears to introduce a character (Elf the dwarf, jokingly referred to as Jared) into the game when in single-player mode.First, a sound effect named 'elf_the_dwarf_is_here' is played if audio is enabled. Next, a toast message appears on the screen saying "Elf the dwarf has joined your team!" for a short duration. Finally, a new game sprite named 'jaredSprite' is created at a specific position. All indicating we need the Dwarf.
@@ -61,7 +70,7 @@ We have to change singlePlayer parameter to true and reload game.
    
 <img width="241" alt="image" src="https://github.com/Miragle-Hub/Holiday-Hack-Challenge-2023---SANS/assets/128744976/634c5fa8-78d0-4b6b-9a04-d4b4a50280cd">
 
-2. Choose play game with random players and once the game room to loads check the current loaded URL "window.location.href"
+2. Choose play game with random players and once the game room loads check the current loaded URL "window.location.href"
    
 3. Use the below javascript which changes the "SinglePlayer" parameter to true and loads the frame again.
   
@@ -85,7 +94,7 @@ window.location.href = url.href;
 Difficulty: 🎄🎄
 Visit Ginger Breddie in Santa's Shack on Christmas Island to help him with some basic Linux tasks. It's in the southwest corner of Frosty's Beach.
 
-A good warm up to brush our Linux Basic's 
+Dust off your Linux beard and let's work on the festive tasks frenzy! 
 
 <details>
 <summary>Solution</summary>
@@ -237,8 +246,7 @@ How well do you know your pentest reports?
 Noel Boetie used ChatNPT to write a pentest report. Go to Christmas Island and help him clean it up.
 Reportinator
 
-We are presented with a report to check if the vulnerabilities reported are true or false.
-It is good to read through the report and get your answers but there is also an alternative way to do this challenege.
+Ho ho ho! This report's got vulnerabilities listed like Santa's Naughty & Nice. Reading through is always good, but wouldn't a clever trick be nice? There's another way to solve this puzzle, so sharpen your coding elf ears and listen up!
 
 ### Technique
 There is a POST request with payload data for the 9 questions asked where 1 indicates false and 0 indicates true. With the help of Burpsuite we will first intercept the request and then pass it over to Intruder which would help with all the probable combinations for the correct answer.
@@ -252,7 +260,7 @@ There is a POST request with payload data for the 9 questions asked where 1 indi
 
    <img width="506" alt="image" src="https://github.com/Miragle-Hub/Holiday-Hack-Challenge-2023---SANS/assets/128744976/022888ba-fe19-4c1c-b5bd-8cab0e0021fb">
 
-3. Lauch the attack and observe one response will have 200 response status code.
+3. Lauch the attack and observe one of the response will have 200 response status code.
 
    <img width="547" alt="image" src="https://github.com/Miragle-Hub/Holiday-Hack-Challenge-2023---SANS/assets/128744976/3f5e3ac8-7754-4867-afea-b4734deda8eb">
 
@@ -278,7 +286,7 @@ Help Sparkle Redberry with some Azure command line skills. Find the elf and the 
 > 
 > The Azure CLI tools come with a builtin help system, but Microsoft also provides this handy [cheatsheet](https://learn.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest.
 
-A good warm up to brush Azure CLI basics
+Before you get too comfy, why not give your Azure CLI skills a festive brush-up? 
 
 <details>
 <summary>Solution</summary>
@@ -509,8 +517,7 @@ Piney Sappington needs a lesson in JSON web tokens. Hack Elf Hunt and score 75 p
 <details>
 <summary>Solution</summary>
 
-This task introduces us to JWT token, how to decode/modify and work with modified token. Similar to previous tasks such as snowball fight the solution has to be worked on the same tab. There is a shortcut and an intended way to do this task. let's discuss both.
-
+JWT Decode and hack! Shortcut or deep dive? Both paths welcome, single-tab battleground, awaits!
 
 ## Intended Way
 1. Lauch developer console and naviagate to Apllication tab which reveals a cookie for doamin https://elfhunt.org named "ElfHunt_JWT" 
