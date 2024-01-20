@@ -4,7 +4,7 @@
 
  | Christmas Island | 
  |     :---:      |
- | [Orientation](https://github.com/Miragle-Hub/Holiday-Hack-Challenge-2023---SANS/edit/main/README.md#sans-holiday-hack-challenge-2023 )   |
+ | [Orientation]( )   |
  | [Frosty's Beach](https://github.com/Miragle-Hub/Holiday-Hack-Challenge-2023---SANS/blob/main/README.md#christmas-island-frostys-beach)      |
  | Santa's Surf Shack      |
  | Rudolph's Rest Resort     |
