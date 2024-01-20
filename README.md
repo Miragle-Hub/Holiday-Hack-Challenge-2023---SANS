@@ -2,6 +2,9 @@
  
 <img width="800" alt="image" src="https://github.com/Miragle-Hub/Holiday-Hack-Challenge-2023---SANS/assets/128744976/d051e195-083b-431e-903d-cc42be8bcb79">  
 
+<div align="center">
+ 
+ 
    | Christmas Island | 
    |     :---:      |
    | [Orientation]( )   |
@@ -9,7 +12,7 @@
    | Santa's Surf Shack      |
    | Rudolph's Rest Resort     |
    | Resort Lobby     |
-
+</div>>
 ## Christmas Island: Orientation
 ### Holiday Hack Orientation
 Difficulty: 🎄
@@ -53,8 +56,8 @@ The code appears to introduce a character (Elf the dwarf, jokingly referred to a
 View the source code of the game 
 <img width="739" alt="image" src="https://github.com/Miragle-Hub/Holiday-Hack-Challenge-2023---SANS/assets/128744976/53a6d875-2c45-47e0-bf53-4788b72f4158">
 
-```
- // Check if it's single-player mode
+
+```// Check if it's single-player mode
     // jared ... I mean Elf the dwarf joins the fight when in single player mode
        if (singlePlayer === 'true') {
           setTimeout(() => {
@@ -64,6 +67,7 @@ View the source code of the game
             toastManager.showToast("Elf the dwarf has joined your team!", duration=500, delay=5000);
             jaredSprite = gameSceneObject.physics.add.sprite(starting_pos.x + 150, starting_pos.y, 'jaredSprite');
 ```
+
 ### Working towards Victory: 
 We have to change singlePlayer parameter to true and reload game. 
 > [!IMPORTANT]
