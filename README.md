@@ -2,6 +2,14 @@
  
 <img width="800" alt="image" src="https://github.com/Miragle-Hub/Holiday-Hack-Challenge-2023---SANS/assets/128744976/d051e195-083b-431e-903d-cc42be8bcb79">  
 
+ | Christmas Island | 
+ |     :---:      |
+ | [Orientation](https://github.com/Miragle-Hub/Holiday-Hack-Challenge-2023---SANS/edit/main/README.md#sans-holiday-hack-challenge-2023 )   |
+ | Frosty's Beach      |
+ | Santa's Surf Shack      |
+ | Rudolph's Rest Resort     |
+ | Resort Lobby     |
+
 ## Christmas Island: Orientation
 ### Holiday Hack Orientation
 Difficulty: 🎄
