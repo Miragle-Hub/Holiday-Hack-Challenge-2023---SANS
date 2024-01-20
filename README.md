@@ -7,12 +7,25 @@
  
    | Christmas Island | 
    |     :---:      |
-   | [Orientation]( )   |
-   | [Frosty's Beach](https://github.com/Miragle-Hub/Holiday-Hack-Challenge-2023---SANS/blob/main/README.md#christmas-island-frostys-beach)      |
-   | Santa's Surf Shack      |
-   | Rudolph's Rest Resort     |
-   | Resort Lobby     |
-</div>>
+   | Snowball Fight      |
+   | Linux 101      |
+   | Reportinator   |
+   | Azure 101     |
+   | Elf Hunt    |
+   | Certificate SSHenanigans     |
+   | The Captain's Comms    |
+   | Active Directory     |
+</div>
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
 ## Christmas Island: Orientation
 ### Holiday Hack Orientation
 Difficulty: 🎄
