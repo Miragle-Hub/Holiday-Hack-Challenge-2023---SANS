@@ -17,15 +17,6 @@
    | Active Directory     |
 </div>
 
- 
- 
- 
- 
- 
- 
- 
- 
-
 ## Christmas Island: Orientation
 ### Holiday Hack Orientation
 Difficulty: 🎄
@@ -41,9 +32,10 @@ Talk to Jingle Ringford on Christmas Island and get your bearings at Geese Islan
 
 ## Christmas Island: Frosty's beach
 
-Hints: Synthesis is the True Ending
-From: Santa
-The AI revolution has begun. Some of the most prominent and useful tools born from the advent of powerful AI include ChatGPT, PlayHT, Midjourney, Dall-E 3, Bing AI, and Bard, and Grok.
+> [!TIP]
+> Hints: Synthesis is the True Ending
+> From: Santa
+> The AI revolution has begun. Some of the most prominent and useful tools born from the advent of powerful AI include ChatGPT, PlayHT, Midjourney, Dall-E 3, Bing AI, and Bard, and Grok.
 
 ### Snowball Fight
 Difficulty: 🎄🎄
