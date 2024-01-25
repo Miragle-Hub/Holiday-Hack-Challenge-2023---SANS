@@ -767,6 +767,8 @@ alabaster@ssh-server-vm:~$ cat alabaster_todo.md
 As per the TODO List Alabster is planning to implement ${\color{green}Gingerbread}$  cookie cache 🍪 
 </details>
 
+## Steampunk Island - Cogggoggle Marina
+
 ### Active Directory
 Difficult: 🎄🎄🎄🎄
 
@@ -884,7 +886,7 @@ Certipy v4.8.2 - by Oliver Lyak (ly4k)
 [*] Trying to get TGT...
 [-] Got error while trying to request TGT: Kerberos SessionError: KDC_ERROR_CLIENT_NOT_TRUSTED(Reserved for PKINIT)
 ````
-Could not get anything for alabaster let's search if we can find any other used for whom we can request a certificate.
+Could not get anything for alabaster let's search if we can find any other user for whom we can request a certificate.
 ````
 alabaster@ssh-server-vm:~/impacket$ GetADUsers.py -all -dc-ip 10.0.0.53 'northpole.local/elfy:J4`ufC49/J4766'
 Impacket v0.11.0 - Copyright 2023 Fortra
@@ -950,3 +952,24 @@ $\color{gold}{\textsf{So through the valley and over the height.'}}$
 $\color{yellow}{\textsf{And he'll silently take his way.}}$
 
 </details>
+
+## Steampunk Island - Rusty Quay
+
+While I was in Steampunk Island's Rusty Quay I gathered Game catridge Volume 3 by solving the maze. Zooming out the page was my only help.
+
+Elf the Dwarf’s, Gloriously, Unfinished, Adventure! - Vol3
+
+
+## Steampunk Island - Brass Buoy Port
+
+## Faster Lock Combination
+Difficult: 🎄🎄
+
+Over on Steampunk Island, Bow Ninecandle is having trouble opening a padlock. Do some research and see if you can help open it!
+
+### The Captain's Comms
+Difficult: 🎄🎄🎄🎄
+
+Speak with Chimney Scissorsticks on Steampunk Island about the interesting things the captain is hearing on his new Software Defined Radio. You'll need to assume the GeeseIslandsSuperChiefCommunicationsOfficer role.
+
+
