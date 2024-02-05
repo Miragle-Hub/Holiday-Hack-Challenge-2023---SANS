@@ -62,7 +62,8 @@ View the source code of the game
 <img width="739" alt="image" src="https://github.com/Miragle-Hub/Holiday-Hack-Challenge-2023---SANS/assets/128744976/53a6d875-2c45-47e0-bf53-4788b72f4158">
 
 
-```// Check if it's single-player mode
+```javascript
+// Check if it's single-player mode
     // jared ... I mean Elf the dwarf joins the fight when in single player mode
        if (singlePlayer === 'true') {
           setTimeout(() => {
